@@ -1,0 +1,62 @@
+<recipes>
+  <!--Not including nat U, so definitions don't conflict -->
+  <recipe>
+    <name>u3o8</name>
+    <basis>atom</basis>
+    <nuclide>
+      <id>922350000</id>
+      <comp>0.00711</comp>
+    </nuclide>
+    <nuclide>
+      <id>922380000</id>
+      <comp>0.99289</comp>
+    </nuclide>
+  </recipe>
+  
+  <recipe>
+    <name>uf6</name>
+    <basis>atom</basis>
+    <nuclide>
+      <id>922350000</id>
+      <comp>0.00711</comp>
+    </nuclide>
+    <nuclide>
+      <id>922380000</id>
+      <comp>0.99289</comp>
+    </nuclide>
+  </recipe>
+
+  <recipe>
+    <name>fresh_uox</name>
+    <basis>mass</basis>
+    <nuclide>
+        <id>92235</id>
+        <comp>0.04</comp>
+    </nuclide>
+    <nuclide>
+        <id>92238</id>
+        <comp>0.96</comp>
+    </nuclide>
+  </recipe>
+
+  <recipe>
+    <name>spent_uox</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.0011</comp>
+    </nuclide>
+    <nuclide>
+      <id>92238</id>
+      <comp>0.94</comp>
+    </nuclide>
+    <nuclide>
+      <id>94239</id>
+      <comp>0.009</comp>
+    </nuclide>
+    <nuclide>
+      <id>55137</id>
+      <comp>0.04</comp>
+    </nuclide>
+  </recipe>
+</recipes>

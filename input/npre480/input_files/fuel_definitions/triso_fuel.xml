@@ -1,0 +1,72 @@
+<recipes>
+  <!--Not including nat U, so definitions don't conflict -->
+  <recipe>
+    <name>fresh_haleu_triso</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.13</comp>
+    </nuclide>
+    <nuclide>
+      <id>92238</id>
+      <comp>0.87</comp>
+    </nuclide>
+  </recipe>
+
+  <!-- Currently the same as spent u_ox, going to update -->
+  <recipe>
+    <name>spent_haleu_triso</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.0011</comp>
+    </nuclide>
+    <nuclide>
+      <id>92238</id>
+      <comp>0.94</comp>
+    </nuclide>
+    <nuclide>
+      <id>94239</id>
+      <comp>0.009</comp>
+    </nuclide>
+    <nuclide>
+      <id>55137</id>
+      <comp>0.04</comp>
+    </nuclide>
+  </recipe>
+
+  <recipe>
+    <name>fresh_leu_triso</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.04</comp>
+    </nuclide>
+    <nuclide>
+      <id>92238</id>
+      <comp>0.96</comp>
+    </nuclide>
+  </recipe>
+
+  <!-- Currently the same as spent u_ox, going to update -->
+  <recipe>
+    <name>spent_leu_triso</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.0011</comp>
+    </nuclide>
+    <nuclide>
+      <id>92238</id>
+      <comp>0.94</comp>
+    </nuclide>
+    <nuclide>
+      <id>94239</id>
+      <comp>0.009</comp>
+    </nuclide>
+    <nuclide>
+      <id>55137</id>
+      <comp>0.04</comp>
+    </nuclide>
+  </recipe>
+</recipes>
