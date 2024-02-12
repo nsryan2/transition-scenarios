@@ -228,4 +228,79 @@
     <xi:include href="../reactors/ZION-1.xml" />
 
     <xi:include href="../reactors/ZION-2.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-1.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-2.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-3.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-4.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-5.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-6.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-7.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-8.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-9.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-10.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-11.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-12.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-13.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-14.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-15.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-16.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-17.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-18.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-19.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-20.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-21.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-22.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-23.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-24.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-25.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-26.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-27.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-28.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-29.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-30.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-31.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-32.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-33.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-34.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-35.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-36.xml" />
+
+    <xi:include href="../reactors/xe-100s/Xe-100-37.xml" />
+
     </inclusions>

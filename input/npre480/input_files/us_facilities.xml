@@ -1,6 +1,6 @@
 <simulation xml:base="/home/nsryan/Desktop/arfc/transition-scenarios/input/npre480/input_files/" xmlns:xi="http://www.w3.org/2001/XInclude">
   <control>
-    <duration>1500</duration> <!--In months, goal is 2030-->
+    <duration>1600</duration> <!--In months, goal is 2096-->
     <startmonth>1</startmonth>
     <startyear>1965</startyear> <!--Year-->
     <decay>lazy</decay>
@@ -214,9 +214,15 @@
     </institution>
 
     <institution>
-      <name>Reactors</name>
+      <name>LWReactors</name>
       <config>
         <xi:include href="deployinst.xml"/>
+      </config>
+    </institution>
+    <institution>
+      <name>Xe-100</name>
+      <config>
+        <xi:include href="deployinst_xe100.xml"/>
       </config>
     </institution>
   </region>

@@ -1,6 +1,5 @@
 <DeployInst>
     <prototypes>
-        <val>Sink_HLW</val>
         <val>ANO-1</val>
         <val>ANO-2</val>
         <val>BEAVER_VALLEY-1</val>
@@ -118,7 +117,6 @@
         <val>ZION-2</val>
     </prototypes>
     <build_times>
-        <val>900</val>
         <val>117</val>
         <val>169</val>
         <val>138</val>
@@ -236,7 +234,6 @@
         <val>109</val>
     </build_times>
     <n_build>
-        <val>1</val>
         <val>1</val>
         <val>1</val>
         <val>1</val>
