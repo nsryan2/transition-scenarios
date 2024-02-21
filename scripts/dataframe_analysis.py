@@ -177,7 +177,7 @@ def commodity_to_prototype(transactions_df, commodity, prototype):
     Returns:
     -------
     prototype_transactions: dataframe
-        contains summed transactions at each time step of the 
+        contains summed transactions at each time step of the
         spcified commodity that are sent to
         the specified prototype name.
     '''
@@ -202,7 +202,7 @@ def transactions_to_prototype(transactions_df, prototype):
     Returns:
     --------
     prototype_transactions: DataFrame
-        contains summed transactions at each time step that 
+        contains summed transactions at each time step that
         are sent to the specified prototype name.
     '''
     prototype_transactions = find_prototype_receiver(
