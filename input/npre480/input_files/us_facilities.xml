@@ -162,6 +162,7 @@
       <Sink>
         <in_commods>
           <val>spent_uox</val>
+          <val>spent_haleu</val>
           <val>tails</val>
         </in_commods>
       </Sink>
@@ -200,7 +201,7 @@
         </entry>
       </initialfacilitylist>
       <config>
-          <ManagerInst>
+        <ManagerInst>
           <prototypes>
             <val>Mine</val>
             <val>Mill</val>

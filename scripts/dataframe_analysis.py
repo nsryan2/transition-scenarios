@@ -50,7 +50,7 @@ def add_zeros_columns(df, column_names):
     return df
 
 
-def sum_and_add_missing_time(df):
+def sum_and_add_missing_time(df, number_months=1500):
     '''
     Sums the values of the same time step, and adds any missing time steps
     with 0 for the value
@@ -59,6 +59,10 @@ def sum_and_add_missing_time(df):
     -----------
     df: dataframe
         dataframe
+    number_months: int
+        the number of months in the simulation
+        defaults to 1500 months or 125 years
+
 
     Returns:
     --------
@@ -68,7 +72,7 @@ def sum_and_add_missing_time(df):
     '''
     summed_df = df.groupby(['Time']).Quantity.sum().reset_index()
     summed_df = summed_df.set_index('Time').reindex(
-        np.arange(0, 1500, 1)).fillna(0).reset_index()
+        np.arange(0, number_months, 1)).fillna(0).reset_index()
     return summed_df
 
 
