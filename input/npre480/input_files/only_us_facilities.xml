@@ -1,6 +1,6 @@
 <simulation xml:base="/home/nathan/Desktop/arfc/transition-scenarios/input/npre480/input_files/" xmlns:xi="http://www.w3.org/2001/XInclude">
   <control>
-    <duration>780</duration> <!--In months, goal is 2030-->
+    <duration>1600</duration> <!--In months, goal is 2096-->
     <startmonth>1</startmonth>
     <startyear>1965</startyear> <!--Year-->
     <decay>lazy</decay>
@@ -14,6 +14,8 @@
     <spec> <lib>cycamore</lib><name>Sink</name> </spec>
     <spec> <lib>agents</lib><name>NullRegion</name> </spec>
     <spec> <lib>agents</lib><name>NullInst</name> </spec>
+    <spec> <lib>cycamore</lib> <name>DeployInst</name> </spec>
+    <spec> <lib>cycamore</lib> <name>ManagerInst</name> </spec>
   </archetypes>
 
   <commodity>
@@ -37,17 +39,15 @@
     <solution_priority>1.0</solution_priority>
   </commodity>
   <commodity>
-    <name>fresh_haleu_triso</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
     <name>tails</name>
     <solution_priority>1.0</solution_priority>
   </commodity>
   <commodity>
-    <name>spent_haleu_triso</name>
+    <name>spent_uox</name>
     <solution_priority>1.0</solution_priority>
   </commodity>
+
+ <xi:include href="us_o_inclusions.xml#xpointer(/inclusions/child::*)"/>
 
  <facility>
     <name>Mine</name>
@@ -138,22 +138,22 @@
   </facility>
 
   <facility>
-    <name>MMR</name>
-    <lifetime>240</lifetime> <!--in months-->
+    <name>LWR</name>
+    <lifetime>720</lifetime> <!--in months-->
     <config>
       <Reactor>
-          <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
-          <fuel_inrecipes> <val>fresh_haleu_triso</val> </fuel_inrecipes>
-          <fuel_outcommods> <val>spent_haleu_triso</val> </fuel_outcommods>
-          <fuel_outrecipes> <val>spent_haleu_triso</val> </fuel_outrecipes>
-          <cycle_time>240</cycle_time> <!--in months-->
-          <refuel_time>1</refuel_time>
-          <assem_size>180</assem_size>
-          <n_assem_core>3</n_assem_core>
-          <n_assem_batch>1</n_assem_batch>
-          <power_cap>5</power_cap>  <!--in MWe-->
+        <fuel_incommods> <val>fresh_uox</val> </fuel_incommods>
+        <fuel_inrecipes> <val>fresh_uox</val> </fuel_inrecipes>
+        <fuel_outcommods> <val>spent_uox</val> </fuel_outcommods>
+        <fuel_outrecipes> <val>spent_uox</val> </fuel_outrecipes>
+        <cycle_time>18</cycle_time> <!--in months-->
+        <refuel_time>1</refuel_time> <!--in months-->
+        <assem_size>33000</assem_size>
+        <n_assem_core>3</n_assem_core>
+        <n_assem_batch>1</n_assem_batch>
+        <power_cap>1000</power_cap> <!--in MWe-->
       </Reactor>
-    </config>
+      </config>
   </facility>
 
   <facility>
@@ -161,7 +161,7 @@
     <config>
       <Sink>
         <in_commods>
-          <val>spent_haleu_triso</val>
+          <val>spent_uox</val>
           <val>tails</val>
         </in_commods>
       </Sink>
@@ -199,18 +199,25 @@
           <number>1</number>
         </entry>
       </initialfacilitylist>
-      <config> <NullInst/> </config>
+      <config>
+          <ManagerInst>
+          <prototypes>
+            <val>Mine</val>
+            <val>Mill</val>
+            <val>Conversion</val>
+            <val>Enrichment</val>
+            <val>FuelFab</val>
+            <val>NuclearRepository</val>
+          </prototypes>
+        </ManagerInst>
+      </config>
     </institution>
 
     <institution>
-      <name>Reactors</name>
-      <initialfacilitylist>
-        <entry>
-          <prototype>MMR</prototype>
-          <number>1</number>
-        </entry>
-        </initialfacilitylist>
-        <config> <NullInst/> </config>
+      <name>LWReactors</name>
+      <config>
+        <xi:include href="deployinst.xml"/>
+      </config>
     </institution>
   </region>
 
@@ -227,78 +234,5 @@
     </nuclide>
   </recipe>
 
-<recipe>
-    <name>u3o8</name>
-    <basis>atom</basis>
-    <nuclide>
-      <id>922350000</id>
-      <comp>0.00711</comp>
-    </nuclide>
-    <nuclide>
-      <id>922380000</id>
-      <comp>0.99289</comp>
-    </nuclide>
-  </recipe>
-
-  <recipe>
-    <name>uf6</name>
-    <basis>atom</basis>
-    <nuclide>
-      <id>922350000</id>
-      <comp>0.00711</comp>
-    </nuclide>
-    <nuclide>
-      <id>922380000</id>
-      <comp>0.99289</comp>
-    </nuclide>
-  </recipe>
-
-  <recipe>
-    <name>enr_u</name>
-    <basis>mass</basis>
-    <nuclide>
-        <id>92235</id>
-        <comp>0.04</comp>
-    </nuclide>
-    <nuclide>
-        <id>92238</id>
-        <comp>0.96</comp>
-    </nuclide>
-  </recipe>
-
-  <recipe>
-    <name>fresh_uox</name>
-    <basis>mass</basis>
-    <nuclide>
-        <id>92235</id>
-        <comp>0.04</comp>
-    </nuclide>
-    <nuclide>
-        <id>92238</id>
-        <comp>0.96</comp>
-    </nuclide>
-  </recipe>
-
-  <recipe>
-    <name>spent_uox</name>
-    <basis>mass</basis>
-    <nuclide>
-      <id>92235</id>
-      <comp>0.0011</comp>
-    </nuclide>
-    <nuclide>
-      <id>92238</id>
-      <comp>0.94</comp>
-    </nuclide>
-    <nuclide>
-      <id>94239</id>
-      <comp>0.009</comp>
-    </nuclide>
-    <nuclide>
-      <id>55137</id>
-      <comp>0.04</comp>
-    </nuclide>
-  </recipe>
-
-<xi:include href="fuel_definitions/triso_fuel.xml#xpointer(/recipes/child::*)"/>
+  <xi:include href="fuel_definitions/leu_fuel.xml#xpointer(/recipes/child::*)"/>
 </simulation>
