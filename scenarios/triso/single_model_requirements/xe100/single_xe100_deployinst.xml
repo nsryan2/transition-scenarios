@@ -1,0 +1,11 @@
+<DeployInst>
+    <prototypes>
+        <val>Xe_100_1</val>
+    </prototypes>
+    <build_times>
+        <val>10</val>
+    </build_times>
+    <n_build>
+        <val>1</val>
+    </n_build>
+</DeployInst>
