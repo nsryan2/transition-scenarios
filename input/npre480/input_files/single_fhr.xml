@@ -1,6 +1,6 @@
 <simulation xml:base="/home/nathan/Desktop/arfc/transition-scenarios/input/npre480/input_files/" xmlns:xi="http://www.w3.org/2001/XInclude">
   <control>
-    <duration>780</duration> <!--In months, goal is 2030-->
+    <duration>1500</duration> <!--In months, goal is 2030-->
     <startmonth>1</startmonth>
     <startyear>1965</startyear> <!--Year-->
     <decay>lazy</decay>
@@ -29,15 +29,11 @@
     <solution_priority>1.0</solution_priority>
   </commodity>
   <commodity>
-    <name>enr_u</name>
+    <name>enr_triso_xe</name>
     <solution_priority>1.0</solution_priority>
   </commodity>
   <commodity>
-    <name>fresh_uox</name>
-    <solution_priority>1.0</solution_priority>
-  </commodity>
-  <commodity>
-    <name>fresh_haleu_triso</name>
+    <name>fresh_triso_xe</name>
     <solution_priority>1.0</solution_priority>
   </commodity>
   <commodity>
@@ -45,7 +41,7 @@
     <solution_priority>1.0</solution_priority>
   </commodity>
   <commodity>
-    <name>spent_haleu_triso</name>
+    <name>spent_triso_xe</name>
     <solution_priority>1.0</solution_priority>
   </commodity>
 
@@ -107,7 +103,7 @@
       <Enrichment>
         <feed_commod>uf6</feed_commod>
         <feed_recipe>uf6</feed_recipe>
-        <product_commod>fresh_haleu_triso</product_commod>
+        <product_commod>enr_triso_xe</product_commod>
         <tails_commod>tails</tails_commod>
         <tails_assay>0.002</tails_assay>
         <max_feed_inventory>20e6</max_feed_inventory>
@@ -124,11 +120,11 @@
     <config>
       <Storage>
         <in_commods>
-          <val>fresh_haleu_triso</val>
+          <val>enr_triso_xe</val>
         </in_commods>
-        <in_recipe>fresh_haleu_triso</in_recipe>
+        <in_recipe>enr_triso_xe</in_recipe>
         <out_commods>
-          <val>fresh_haleu_triso</val>
+          <val>fresh_triso_xe</val>
         </out_commods>
         <residence_time>1</residence_time>
         <!-- Westing House Fuel Fab (SC) -->
@@ -139,20 +135,20 @@
   </facility>
 
   <facility>
-    <name>MMR</name>
-    <lifetime>240</lifetime> <!--in months-->
+    <name>XE-100</name>
+    <lifetime>720</lifetime> <!--in months-->
     <config>
       <Reactor>
-          <fuel_incommods> <val>fresh_haleu_triso</val> </fuel_incommods>
-          <fuel_inrecipes> <val>fresh_haleu_triso</val> </fuel_inrecipes>
-          <fuel_outcommods> <val>spent_haleu_triso</val> </fuel_outcommods>
-          <fuel_outrecipes> <val>spent_haleu_triso</val> </fuel_outrecipes>
-          <cycle_time>240</cycle_time> <!--in months-->
+          <fuel_incommods> <val>fresh_triso_xe</val> </fuel_incommods>
+          <fuel_inrecipes> <val>fresh_triso_xe</val> </fuel_inrecipes>
+          <fuel_outcommods> <val>spent_triso_xe</val> </fuel_outcommods>
+          <fuel_outrecipes> <val>spent_triso_xe</val> </fuel_outrecipes>
+          <cycle_time>24</cycle_time> <!--in months-->
           <refuel_time>1</refuel_time>
           <assem_size>180</assem_size>
           <n_assem_core>3</n_assem_core>
           <n_assem_batch>1</n_assem_batch>
-          <power_cap>5</power_cap>  <!--in MWe-->
+          <power_cap>80</power_cap>  <!--in MWe-->
       </Reactor>
     </config>
   </facility>
@@ -162,7 +158,7 @@
     <config>
       <Sink>
         <in_commods>
-          <val>spent_haleu_triso</val>
+          <val>spent_uox</val>
           <val>tails</val>
         </in_commods>
       </Sink>
@@ -207,7 +203,7 @@
       <name>Reactors</name>
       <initialfacilitylist>
         <entry>
-          <prototype>MMR</prototype>
+          <prototype>XE-100</prototype>
           <number>1</number>
         </entry>
         </initialfacilitylist>
@@ -255,33 +251,33 @@
   </recipe>
 
   <recipe>
-    <name>enr_u</name>
+    <name>enr_triso_xe</name>
     <basis>mass</basis>
     <nuclide>
         <id>92235</id>
-        <comp>0.04</comp>
+        <comp>0.155</comp>
     </nuclide>
     <nuclide>
         <id>92238</id>
-        <comp>0.96</comp>
+        <comp>0.845</comp>
     </nuclide>
   </recipe>
 
   <recipe>
-    <name>fresh_uox</name>
+    <name>fresh_triso_xe</name>
     <basis>mass</basis>
     <nuclide>
         <id>92235</id>
-        <comp>0.04</comp>
+        <comp>0.155</comp>
     </nuclide>
     <nuclide>
         <id>92238</id>
-        <comp>0.96</comp>
+        <comp>0.845</comp>
     </nuclide>
   </recipe>
 
   <recipe>
-    <name>spent_uox</name>
+    <name>spent_triso_xe</name>
     <basis>mass</basis>
     <nuclide>
       <id>92235</id>

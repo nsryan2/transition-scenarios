@@ -1,0 +1,135 @@
+<simulation xml:base="/home/nathan/Desktop/arfc/transition-scenarios/input/npre480/input_files/" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <control>
+    <duration>780</duration> <!--In months, goal is 2030-->
+    <startmonth>1</startmonth>
+    <startyear>1965</startyear> <!--Year-->
+    <decay>lazy</decay>
+  </control>
+
+  <archetypes>
+    <spec> <lib>cycamore</lib><name>Reactor</name> </spec>
+    <spec> <lib>cycamore</lib><name>Source</name> </spec>
+    <spec> <lib>cycamore</lib><name>Sink</name> </spec>
+    <spec> <lib>agents</lib><name>NullRegion</name> </spec>
+    <spec> <lib>agents</lib><name>NullInst</name> </spec>
+  </archetypes>
+
+  <commodity>
+  <commodity>
+    <name>fresh_fuel</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+  <commodity>
+    <name>spent_fuel</name>
+    <solution_priority>1.0</solution_priority>
+  </commodity>
+
+ <facility>
+    <name>Mine</name>
+    <config>
+      <Source>
+        <outcommod>fresh_fuel</outcommod>
+        <outrecipe>fresh_fuel</outrecipe>
+        <throughput>1e6</throughput>
+        <!-- Cameco Smith Ranch-Highland Mine -->
+        <latitude>43.053736</latitude>
+        <longitude>-105.685089</longitude>
+      </Source>
+    </config>
+  </facility>
+
+  <facility>
+    <name>Rct</name>
+    <lifetime>720</lifetime> <!--in months-->
+    <config>
+      <Reactor>
+          <fuel_incommods> <val>fresh_fuel</val> </fuel_incommods>
+          <fuel_inrecipes> <val>fresh_fuel</val> </fuel_inrecipes>
+          <fuel_outcommods> <val>spent_fuel</val> </fuel_outcommods>
+          <fuel_outrecipes> <val>spent_fuel</val> </fuel_outrecipes>
+          <cycle_time>24</cycle_time> <!--in months-->
+          <refuel_time>0</refuel_time>
+          <assem_size>180</assem_size>
+          <n_assem_core>3</n_assem_core>
+          <n_assem_batch>1</n_assem_batch>
+          <power_cap>5</power_cap>  <!--in MWe-->
+      </Reactor>
+    </config>
+  </facility>
+
+  <facility>
+    <name>NuclearRepository</name>
+    <config>
+      <Sink>
+        <in_commods>
+          <val>spent_fuel</val>
+        </in_commods>
+      </Sink>
+    </config>
+  </facility>
+
+  <region>
+    <name>USA</name>
+    <config> <NullRegion/> </config>
+    <institution>
+      <name>United States Nuclear</name>
+      <initialfacilitylist>
+        <entry>
+          <prototype>Mine</prototype>
+          <number>1</number>
+        </entry>
+        <entry>
+          <prototype>NuclearRepository</prototype>
+          <number>1</number>
+        </entry>
+      </initialfacilitylist>
+      <config> <NullInst/> </config>
+    </institution>
+
+    <institution>
+      <name>Reactors</name>
+      <initialfacilitylist>
+        <entry>
+          <prototype>Rct</prototype>
+          <number>0</number>
+        </entry>
+        </initialfacilitylist>
+        <config> <NullInst/> </config>
+    </institution>
+  </region>
+
+  <recipe>
+    <name>fresh_fuel</name>
+    <basis>mass</basis>
+    <nuclide>
+        <id>92235</id>
+        <comp>0.04</comp>
+    </nuclide>
+    <nuclide>
+        <id>92238</id>
+        <comp>0.96</comp>
+    </nuclide>
+  </recipe>
+
+  <recipe>
+    <name>spent_fuel</name>
+    <basis>mass</basis>
+    <nuclide>
+      <id>92235</id>
+      <comp>0.0011</comp>
+    </nuclide>
+    <nuclide>
+      <id>92238</id>
+      <comp>0.94</comp>
+    </nuclide>
+    <nuclide>
+      <id>94239</id>
+      <comp>0.009</comp>
+    </nuclide>
+    <nuclide>
+      <id>55137</id>
+      <comp>0.04</comp>
+    </nuclide>
+  </recipe>
+
+</simulation>

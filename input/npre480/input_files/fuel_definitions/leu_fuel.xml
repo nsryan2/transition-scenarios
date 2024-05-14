@@ -40,6 +40,19 @@
   </recipe>
 
   <recipe>
+    <name>enr_u_voygr</name>
+    <basis>mass</basis>
+    <nuclide>
+        <id>92235</id>
+        <comp>0.0495</comp>
+    </nuclide>
+    <nuclide>
+        <id>92238</id>
+        <comp>0.96</comp>
+    </nuclide>
+  </recipe>
+
+  <recipe>
     <name>fresh_uox</name>
     <basis>mass</basis>
     <nuclide>
