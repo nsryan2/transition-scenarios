@@ -1,4 +1,4 @@
-<DeployInst>
+<DeployInst xmlns:xi="http://www.w3.org/2001/XInclude">
     <prototypes>
         <val>Xe_100_1</val>
     </prototypes>

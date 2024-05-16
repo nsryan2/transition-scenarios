@@ -1,4 +1,4 @@
-<simulation xml:base="/home/nsryan/Desktop/arfc/transition-scenarios/scenarios/triso/single_model_requirements/xe100/" xmlns:xi="http://www.w3.org/2001/XInclude">
+<simulation xmlns:xi="http://www.w3.org/2001/XInclude">
   <control>
     <decay>lazy</decay>
     <duration>1500</duration>
@@ -180,7 +180,7 @@
         </entry>
       </initialfacilitylist>
       <config>
-	<xi:include href="single_xe100_deployinst.xml"/>
+	      <xi:include href="single_xe100_deployinst.xml"/>
       </config>
     </institution>
   </region>
