@@ -12,7 +12,7 @@
         <assem_size>250.124</assem_size>
         <n_assem_core>7</n_assem_core>
         <n_assem_batch>1</n_assem_batch>
-        <power_cap>80</power_cap>
+        <power_cap>80</power_cap> <!-- in MWe -->
       </Reactor>
     </config>
 </facility>
