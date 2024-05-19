@@ -37,25 +37,26 @@
   </archetypes>
 
   <xi:include href="single_xe100_inclusions.xml#xpointer(/inclusions/child::*)"/>
-  <facility>
+  <!-- <facility>
     <name>Sink_HLW</name>
     <config>
       <Sink>
         <in_commods>
           <val>spent_uox</val>
         </in_commods>
-        <!-- Yucca Mountain Repository -->
+        Yucca Mountain Repository
         <latitude>36.8286</latitude>
         <longitude>-116.4364</longitude>
       </Sink>
     </config>
-  </facility>
+  </facility> -->
   <facility>
-    <name>Sink_LLW</name>
+    <name>Sink</name>
     <config>
       <Sink>
         <in_commods>
           <val>tails</val>
+          <val>spent_uox_cooled</val>
         </in_commods>
         <!-- Yucca Mountain Repository -->
         <latitude>36.8286</latitude>
@@ -101,7 +102,7 @@
         </in_commods>
         <in_recipe>spent_uox</in_recipe>
         <out_commods>
-          <val>spent_uox</val>
+          <val>spent_uox_cooled</val>
         </out_commods>
         <residence_time>72</residence_time>
         <!-- Yucca Mountain Repository -->
@@ -110,7 +111,7 @@
       </Storage>
     </config>
   </facility>
-  <facility>
+  <!-- <facility>
     <name>DryStorage</name>
     <config>
       <Storage>
@@ -121,13 +122,13 @@
         <out_commods>
           <val>spent_uox</val>
         </out_commods>
-        <!-- Yucca Mountain Repository -->
+        Yucca Mountain Repository
         <latitude>36.8286</latitude>
         <longitude>-116.4364</longitude>
       </Storage>
     </config>
-  </facility>
-  <facility>
+  </facility> -->
+  <!-- <facility>
     <name>Xe_100CoolingPool</name>
     <config>
       <Storage>
@@ -143,7 +144,7 @@
         <longitude>-116.4364</longitude>
       </Storage>
     </config>
-  </facility>
+  </facility> -->
 
   <region>
     <name>United States</name>
@@ -155,7 +156,7 @@
       <name>FuelCycle</name>
       <initialfacilitylist>
         <entry>
-          <prototype>Sink_LLW</prototype>
+          <prototype>Sink</prototype>
           <number>1</number>
         </entry>
         <entry>
@@ -170,14 +171,14 @@
           <prototype>WetStorage</prototype>
           <number>1</number>
         </entry>
-        <entry>
+        <!-- <entry>
           <prototype>DryStorage</prototype>
           <number>1</number>
-        </entry>
-        <entry>
+        </entry> -->
+        <!-- <entry>
           <prototype>Xe_100CoolingPool</prototype>
           <number>1</number>
-        </entry>
+        </entry> -->
       </initialfacilitylist>
       <config>
 	      <xi:include href="single_xe100_deployinst.xml"/>
