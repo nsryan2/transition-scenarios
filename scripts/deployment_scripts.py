@@ -70,11 +70,18 @@ def num_react_to_cap(df, ar_dict):
 
 
 # # # # # # # # # # # # Deployment Functions # # # # # # # # # # #
-# 1. Greedy Algorithm: deploy the largest reactor first at each time step, fill in the remaining capacity with the next smallest, and so on.
-# 2. Pre-determined distributions: one or more reactors have a preset distribution, and a smaller capacity model fills in the gaps.
-# 3. Deployment Cap: there is a single-number capacity for one or more of the reactor models.
-# 4. Random Deployment: uses a date and hour as seed to randomly sample the reactors list.
-# 5. Initially Random, Greedy: randomly deploys reactors until a reactor bigger than the remaining capacity is proposed for each year, then fills remaining capacity with a greedy algorithm.
+# 1. Greedy Algorithm: deploy the largest reactor first at each time step, fill
+#   in the remaining capacity with the next smallest, and so on.
+# 2. Pre-determined distributions: one or more reactors have a preset
+#   distribution, and a smaller capacity model fills in the gaps.
+# 2.b Deployment Cap [extension of 2]: there is a single-number capacity for
+#   one or more of the reactor models. * there is no function for this, just use
+#   a constant distribution.
+# 4. Random Deployment: uses a date and hour as seed to randomly sample the
+#   reactors list.
+# 5. Initially Random, Greedy: randomly deploys reactors until a reactor bigger
+#   than the remaining capacity is proposed for each year, then fills remaining
+#   capacity with a greedy algorithm.
 
 def greedy_deployment(df, base_col, ar_dict):
     """
@@ -204,6 +211,79 @@ def pre_det_deployment(df, base_col, ar_dict, greedy=True):
                             df.loc[year, f'num_{reactor}'] += 1
                             # Update remaining capacity to be met.
                             cap_difference -= ar_dict[reactor][0]
+
+    # Now account for decommissioning and re-deploying reactors.
+    df = direct_decom(df, ar_dict)
+
+    # Now convert the number of reactors to a capacity.
+    df  = num_react_to_cap(df, ar_dict)
+
+    return df
+
+
+def rand_deployment(df, base_col, ar_dict, set_seed=False, rough=True):
+    """
+    This function randomly deploys reactors from the dictionary of reactors to meet a capacity need.
+
+    There are two implementations:
+    1) rough (rough=True): if a reactor greater than the remaining capacity is proposed, the deployment ends.
+    2) complete (rough=False): the algorithm keeps trying to deploy randomly selected reactors until the capacity demand has been met.
+
+    Parameters
+    ----------
+    df: pandas dataframe
+        The dataframe of capacity information.
+    base_col: str
+        The string name corresponding to the column of capacity that the
+        algorithm is deploying reactors to meet.
+    ar_dict: dictionary
+        A dictionary of reactors with information of the form:
+        {reactor: [Power (MWe), capacity_factor (%), lifetime (yr)]}.
+    set_seed: bool
+        A True/False value that determines whether the seed used for the random
+        number is set or varies based on time.
+    rough: bool
+        A True/False value that determines whether the initial deployment is
+        rough or complete.
+    """
+
+    # initialize the number of reactor columns
+    for reactor in ar_dict.keys():
+        if f'num_{reactor}' not in df:
+            df[f'num_{reactor}'] = 0
+        else:
+            pass
+
+    for year in range(len(df[base_col])):
+        years_capacity = df[base_col][year]
+        # I set the limit this way so that something close to 0 could still
+        # deploy the smallest reactor.
+
+        if set_seed == False:
+            # sample random number based on time
+            c = datetime.now()
+            real_seed = int(c.strftime('%y%m%d%H%M%S'))
+        else:
+            real_seed = 20240527121205
+
+        rng = np.random.default_rng(seed=real_seed)
+
+        while years_capacity > -(ar_dict[list(ar_dict.keys())[-1]][0] + 1):
+            rand_reactor = rng.integers(0,len(ar_dict.keys()))
+
+            # identify random reactor
+            deployed = list(ar_dict.keys())[rand_reactor]
+
+            if ar_dict[deployed][0] > years_capacity:
+                if rough is True:
+                    # for a much rougher check, use break
+                    break
+                elif rough is False:
+                    # for a more accurate, but much much longer run
+                    continue
+            else:
+                df.loc[year, f'num_{deployed}'] += 1
+                years_capacity -= ar_dict[deployed][0]
 
     # Now account for decommissioning and re-deploying reactors.
     df = direct_decom(df, ar_dict)
