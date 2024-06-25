@@ -222,9 +222,6 @@ def pre_det_deployment(df, base_col, ar_dict, greedy=True):
                             # Update remaining capacity to be met.
                             cap_difference -= ar_dict[reactor][0]
 
-    # Create a column for the new capacity each year.
-    df['new_cap'] = df['total_cap'].copy()
-
     # account for decommissioning with a direct replacement
     df = direct_decom(df, ar_dict)
 
@@ -299,9 +296,6 @@ def rand_deployment(df, base_col, ar_dict, set_seed=False, rough=True):
             else:
                 df.loc[year, f'num_{deployed}'] += 1
                 years_capacity -= ar_dict[deployed][0]
-
-    # Create a column for the new capacity each year.
-    df['new_cap'] = df['total_cap'].copy()
 
     # account for decommissioning with a direct replacement
     df = direct_decom(df, ar_dict)
