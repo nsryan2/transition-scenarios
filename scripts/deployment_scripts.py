@@ -59,10 +59,17 @@ def num_react_to_cap(df, ar_dict):
 
     if 'total_cap' not in df:
         df[f'total_cap'] = 0
+        # Create a column for the new capacity each year.
+        df['new_cap'] = 0
     else:
         pass
 
     for reactor in ar_dict.keys():
+        # New capacity calculations.
+        df[f'new_{reactor}_cap'] = (df[f'num_{reactor}'] - df[f'{reactor}Decom']) * ar_dict[f'{reactor}'][0]
+        df['new_cap'] += df[f'new_{reactor}_cap']
+
+        # Total capacity calculations.
         df[f'{reactor}_cap'] = df[f'num_{reactor}'] * ar_dict[f'{reactor}'][0]
         df['total_cap'] += df[f'{reactor}_cap']
 
@@ -107,18 +114,21 @@ def greedy_deployment(df, base_col, ar_dict):
     for year in range(len(df[base_col])):
         remaining_cap = df[base_col][year].copy()
         for reactor in ar_dict.keys():
-            if ar_dict[reactor][0] > df[base_col][year]:
+            if ar_dict[reactor][0] > remaining_cap:
                 reactor_div = 0
             else:
                 # find out how many of this reactor to deploy
                 reactor_div = math.floor(remaining_cap / ar_dict[reactor][0])
-                # remaining capacity to meet
-                remaining_cap = df[base_col][year] - reactor_div * ar_dict[reactor][0]
+            # remaining capacity to meet
+            remaining_cap -= reactor_div * ar_dict[reactor][0]
             df.loc[year, f'num_{reactor}'] += reactor_div
 
     # account for decommissioning with a direct replacement
     df = direct_decom(df, ar_dict)
 
+    # Now calculate the total capacity each year (includes capacity from a
+    # replacement reactor that is new that year, but not new overall because it
+    # is replacing itself).
     df  = num_react_to_cap(df, ar_dict)
 
     return df
@@ -212,10 +222,15 @@ def pre_det_deployment(df, base_col, ar_dict, greedy=True):
                             # Update remaining capacity to be met.
                             cap_difference -= ar_dict[reactor][0]
 
-    # Now account for decommissioning and re-deploying reactors.
+    # Create a column for the new capacity each year.
+    df['new_cap'] = df['total_cap'].copy()
+
+    # account for decommissioning with a direct replacement
     df = direct_decom(df, ar_dict)
 
-    # Now convert the number of reactors to a capacity.
+    # Now calculate the total capacity each year (includes capacity from a
+    # replacement reactor that is new that year, but not new overall because it
+    # is replacing itself).
     df  = num_react_to_cap(df, ar_dict)
 
     return df
@@ -285,10 +300,15 @@ def rand_deployment(df, base_col, ar_dict, set_seed=False, rough=True):
                 df.loc[year, f'num_{deployed}'] += 1
                 years_capacity -= ar_dict[deployed][0]
 
-    # Now account for decommissioning and re-deploying reactors.
+    # Create a column for the new capacity each year.
+    df['new_cap'] = df['total_cap'].copy()
+
+    # account for decommissioning with a direct replacement
     df = direct_decom(df, ar_dict)
 
-    # Now convert the number of reactors to a capacity.
+    # Now calculate the total capacity each year (includes capacity from a
+    # replacement reactor that is new that year, but not new overall because it
+    # is replacing itself).
     df  = num_react_to_cap(df, ar_dict)
 
     return df
@@ -335,7 +355,7 @@ def rand_greedy_deployment(df, base_col, ar_dict, set_seed):
     df = greedy_deployment(df, 'remaining_cap', ar_dict)
 
     # reset the total capacity column
-    df['total_cap'] = 0
+    # df['total_cap'] = 0
 
     # populate the greedy reactor column
     for year in range(len(df[base_col])):
