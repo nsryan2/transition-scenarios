@@ -21,6 +21,7 @@ jobs:
           command: |
             source ~/.bashrc
             conda init
+            conda init bash
             conda activate
             conda install -y -r requirements.txt
             conda install -y \
