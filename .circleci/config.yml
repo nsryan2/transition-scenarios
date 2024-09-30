@@ -12,29 +12,30 @@ jobs:
       - run:
           name: Setup Miniconda
           command: |
-              wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh;
-              chmod +x ~/miniconda.sh && ~/miniconda.sh -b;
-              echo 'export PATH="$HOME/miniconda3/bin:$PATH"'  >> $BASH_ENV;
+            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh
+            chmod +x ~/miniconda.sh && ~/miniconda.sh -b
+            echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> $BASH_ENV
       - run:
           name: Build Environment
           command: |
+            source $BASH_ENV
+            conda init bash
             conda activate base
-            conda install -r requirements.txt
-            conda install install -y \
-                  libhdf5-dev \
-                  cmake \
-                  gfortran \
-                  libblas-dev \
-                  liblapack-dev \
-                  libeigen3-dev \
-                  libhdf5-serial-dev \
-                  autoconf \
-                  libtool \
-                  doxygen \
-                  hdf5-tools \
-                  cyclus \
-                  cymetric
-
+            conda install -y -r requirements.txt
+            conda install -y \
+              libhdf5-dev \
+              cmake \
+              gfortran \
+              libblas-dev \
+              liblapack-dev \
+              libeigen3-dev \
+              libhdf5-serial-dev \
+              autoconf \
+              libtool \
+              doxygen \
+              hdf5-tools \
+              cyclus \
+              cymetric
       - run:
           name: Test transition-scenarios
           command: |
@@ -46,5 +47,3 @@ workflows:
   main:
     jobs:
       - build-and-test
-            cd ~/project/scripts/tests/
-            pytest
