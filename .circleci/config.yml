@@ -16,7 +16,6 @@ jobs:
             chmod +x ~/miniconda.sh && ~/miniconda.sh -b
             echo 'export PATH="$HOME/miniconda3/bin:$PATH"' >> $BASH_ENV
             source $BASH_ENV
-            conda init bash
       - run:
           name: Build Environment
           command: |
