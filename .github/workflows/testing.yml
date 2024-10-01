@@ -24,7 +24,7 @@ jobs:
     - name: Create environment and install dependencies
       run: |
         conda init bash
-        conda config --add channels confa-forge
+        conda config --add channels conda-forge
         source ~/.bashrc
         conda create --name test-env python=3.11.9 -y
         conda activate test-env
