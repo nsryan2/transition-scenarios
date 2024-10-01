@@ -30,7 +30,7 @@ jobs:
         conda activate test-env
         pip install -r requirements.txt
         conda install -y \
-          libhdf5-dev \
+          hdf5 \
           cmake \
           gfortran \
           libblas \
@@ -39,7 +39,6 @@ jobs:
           autoconf \
           libtool \
           doxygen \
-          hdf5-tools \
           progress \
           cyclus \
           cycamore \
