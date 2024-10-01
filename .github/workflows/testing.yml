@@ -41,6 +41,7 @@ jobs:
           libtool \
           doxygen \
           hdf5-tools \
+          progress \
           cyclus \
           cycamore \
           cymetric
