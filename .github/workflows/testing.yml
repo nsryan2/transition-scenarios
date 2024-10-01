@@ -25,6 +25,7 @@ jobs:
       run: |
         conda init bash
         source ~/.bashrc
+        conda config --add channels confa-forge
         conda create --name test-env python=3.11.9 -y
         conda activate test-env
         conda install -y requirements.txt
