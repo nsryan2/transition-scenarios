@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: 3.*  # Specify the Python version you need
+
+    - name: Create environment and install dependencies
+      run: |
+        conda init bash
+        conda config --add channels conda-forge
+        source ~/.bashrc
+        conda create --name test-env python=3.* -y
+        conda activate test-env
+        pip install -r requirements.txt
+        conda install -y \
+          hdf5 \
+          cmake \
+          gfortran \
+          libblas \
+          liblapack \
+          omnia::eigen3 \
+          autoconf \
+          libtool \
+          doxygen \
+          progress \
+          numpy<=1.26.4
+
+    - name: Install Pyne
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        conda install -y pyne
+
+    - name: Install Cymetric
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        conda install -y cymetric
+
+    - name: Run tests
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        pytest
