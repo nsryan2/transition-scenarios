@@ -52,14 +52,7 @@ jobs:
       run: |
         source ~/.bashrc
         conda activate test-env
-        export PATH="/home/circleci/.local/bin:${PATH}"
-        export PYTHONPATH='/home/circleci/.local/:${PYTHONPATH}'
-        mkdir github
-        git clone https://github.com/pyne/pyne
-        cd pyne/
-        python setup.py install --user
-        cd ~/
-        nuc_data_make
+        conda install -y pyne
 
     - name: Run tests
       run: |
