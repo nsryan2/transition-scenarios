@@ -40,9 +40,23 @@ jobs:
           libtool \
           doxygen \
           progress \
-          cyclus \
-          cycamore \
-          cymetric
+    - name: Install Cyclus
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        git clone https://github.com/cyclus/cyclus
+        cd cyclus
+        python install.py --clean --build-type=Release --prefix=$CONDA_PREFIX
+    - name: Install Cycamore
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        conda install -y cycamore
+    - name: Install Cymetric
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        conda install -y cymetric
 
     - name: Run tests
       run: |
