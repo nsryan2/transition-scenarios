@@ -19,7 +19,7 @@ jobs:
       uses: conda-incubator/setup-miniconda@v2
       with:
         auto-update-conda: true
-        python-version: 3.11.9  # Specify the Python version you need
+        python-version: 3.*  # Specify the Python version you need
 
     - name: Create environment and install dependencies
       run: |
