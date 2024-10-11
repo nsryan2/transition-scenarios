@@ -39,7 +39,8 @@ jobs:
           autoconf \
           libtool \
           doxygen \
-          progress
+          progress \
+          numpy=1.26.4
 
     - name: Install Cymetric
       run: |
