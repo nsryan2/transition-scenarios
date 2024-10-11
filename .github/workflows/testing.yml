@@ -40,7 +40,7 @@ jobs:
           libtool \
           doxygen \
           progress \
-          numpy=1.26.4
+          numpy<=1.26.4
 
     - name: Install Cymetric
       run: |
