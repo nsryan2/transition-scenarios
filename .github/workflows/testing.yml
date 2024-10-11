@@ -40,11 +40,35 @@ jobs:
           libtool \
           doxygen \
           progress \
+    - name: Install Cyclus
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        git clone https://github.com/cyclus/cyclus
+        cd cyclus
+        python install.py --clean --build-type=Release --prefix=$CONDA_PREFIX
+    - name: Install Cycamore
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        conda install -y cycamore
+
     - name: Install Cymetric
       run: |
         source ~/.bashrc
         conda activate test-env
         conda install -y cymetric
+    - name: Install Pyne
+      run: |
+        source ~/.bashrc
+        export PATH="/home/circleci/.local/bin:${PATH}"
+        export PYTHONPATH='/home/circleci/.local/:${PYTHONPATH}'
+        mkdir github
+        git clone https://github.com/pyne/pyne
+        cd pyne/
+        python setup.py install --user
+        cd ~/
+        nuc_data_make
 
     - name: Run tests
       run: |
