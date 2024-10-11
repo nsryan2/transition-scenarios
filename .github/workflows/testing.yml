@@ -42,17 +42,17 @@ jobs:
           progress \
           numpy<=1.26.4
 
-    - name: Install Cymetric
-      run: |
-        source ~/.bashrc
-        conda activate test-env
-        conda install -y cymetric
-
     - name: Install Pyne
       run: |
         source ~/.bashrc
         conda activate test-env
         conda install -y pyne
+
+    - name: Install Cymetric
+      run: |
+        source ~/.bashrc
+        conda activate test-env
+        conda install -y cymetric
 
     - name: Run tests
       run: |
