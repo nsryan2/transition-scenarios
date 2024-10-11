@@ -48,5 +48,4 @@ jobs:
       run: |
         source ~/.bashrc
         conda activate test-env
-        cd ~/project/scripts/tests/
         pytest
