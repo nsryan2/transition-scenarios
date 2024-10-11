@@ -51,6 +51,7 @@ jobs:
     - name: Install Pyne
       run: |
         source ~/.bashrc
+        conda activate test-env
         export PATH="/home/circleci/.local/bin:${PATH}"
         export PYTHONPATH='/home/circleci/.local/:${PYTHONPATH}'
         mkdir github
